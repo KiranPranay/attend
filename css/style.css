@@ -1,0 +1,84 @@
+@import url("https://fonts.googleapis.com/css2?family=Oswald&family=Roboto+Slab&display=swap");
+* {
+  padding: 0px;
+  margin: 0px;
+}
+.h-img {
+  float: right;
+}
+.h-h1 {
+  float: left;
+  font-family: "Roboto Slab", serif;
+  margin-left: 2px;
+  position: relative;
+  top: 5px;
+}
+.sbox1 ul li {
+  display: inline-block;
+  padding-right: 10px;
+}
+.sbox1 ul li h3 {
+  position: relative;
+  top: 5px;
+}
+.sbox1 {
+  position: relative;
+  color: #fff;
+  background-color: #130f40;
+  padding-left: 15px;
+  padding-top: 10px !important;
+  padding-bottom: 5px;
+}
+.header {
+  padding: 15px 0px;
+  margin-left: 5%;
+  margin-right: 5%;
+}
+.sbox2 ul li {
+  display: inline-block !important;
+  padding: 0px 5px;
+  margin-top: 10px;
+}
+.sbox2 {
+  padding-left: 15px;
+}
+.mainbox {
+  margin-top: 20px;
+  margin-left: 5%;
+  margin-right: 5%;
+  border: 1px black solid;
+}
+.table {
+  margin-top: 20px;
+  margin-left: 5%;
+  margin-right: 5%;
+  width: 90%;
+}
+.tr1 {
+  background-color: #130f40;
+  color: #ffffff;
+}
+.field {
+  margin: 0 auto;
+  text-align: center;
+}
+.btn-cont {
+  text-align: center;
+  padding-bottom: 20px;
+}
+.body-sty {
+  margin: 2%;
+  display: block;
+  box-shadow: 1px 1px 1px 1px #888888;
+}
+.clg {
+  font-size: 37px;
+  position: relative;
+  top: 7px;
+}
+.down-btn {
+  float: right;
+  margin-right: 5%;
+  margin-top: 4px;
+  margin-bottom: 4px;
+}
