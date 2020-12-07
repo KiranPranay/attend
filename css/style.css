@@ -103,9 +103,7 @@
   color: #130f40;
   text-decoration: none;
 }
-.logoutbt:hover {
-  /* box-shadow: 2px 2px 2px 2px #888888; */
-}
+
 .logoutbt {
   font-size: 0.875rem;
   font-weight: 600;
