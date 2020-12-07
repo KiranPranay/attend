@@ -906,3 +906,7 @@ a.text-light:focus {
   font-weight: normal;
   font-style: normal;
 }
+.classl {
+  border: none;
+  width: 89%;
+}

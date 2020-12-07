@@ -62,7 +62,7 @@ mysqli_query($con,"delete from `students` where `students`.`id`='$uid'");
                 </thead>
                 <tbody class="list">
                 <?php
-$res=mysqli_query($con,"SELECT * FROM `students`,`classes` where `classes`.`id`=`students`.`class`");
+$res=mysqli_query($con,"SELECT `students`.`id`,`students`.`class`,`students`.`name`,`students`.`roll`,`students`.`status`  FROM `students`,`classes` where `classes`.`id`=`students`.`class`");
 while($row=mysqli_fetch_assoc($res)){
                 ?>
                   <tr>

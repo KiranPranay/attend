@@ -57,6 +57,9 @@ if(isset($_POST['class'])){
                      ?>
                 </li>
               </ul>
+              <span class="logoutbt">
+              <a href="logout.php" class="logout" ><i class="fas fa-sign-out-alt"></i> Logout Here</a>
+</span>
           </div>
       </div>
       <main>

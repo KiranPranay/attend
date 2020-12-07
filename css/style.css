@@ -1,4 +1,5 @@
 @import url("https://fonts.googleapis.com/css2?family=Oswald&family=Roboto+Slab&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Texturina:wght@300&display=swap");
 * {
   padding: 0px;
   margin: 0px;
@@ -81,4 +82,46 @@
   margin-right: 5%;
   margin-top: 4px;
   margin-bottom: 4px;
+}
+.logout {
+  color: #130f40;
+  text-transform: uppercase;
+  font-weight: 600;
+  position: relative;
+  bottom: 5px;
+  /* left: 5px; */
+  font-family: "Texturina", serif;
+
+  /* font-size: 0.875rem; */
+  position: relative;
+  transition: all 0.15s ease;
+  letter-spacing: 0.025em;
+  /* text-transform: none; */
+  will-change: transform;
+}
+.logout:hover {
+  color: #130f40;
+  text-decoration: none;
+}
+.logoutbt:hover {
+  /* box-shadow: 2px 2px 2px 2px #888888; */
+}
+.logoutbt {
+  font-size: 0.875rem;
+  font-weight: 600;
+  line-height: 1.5;
+  display: inline-block;
+  padding: 0.625rem 1.25rem;
+  cursor: pointer;
+  -webkit-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+  transition: color 0.15s ease-in-out, background-color 0.15s ease-in-out,
+    border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+  text-align: center;
+  vertical-align: middle;
+  color: #525f7f;
+  border: 1px solid transparent;
+  border-radius: 0.25rem;
+  background-color: transparent;
 }

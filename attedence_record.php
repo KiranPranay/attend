@@ -66,6 +66,7 @@ $class=$_SESSION['CLASS'];
                      ?>
                 </li>
               </ul>
+              <a href="logout.php" class="logout" ><i class="fas fa-sign-out-alt"></i> Logout Here</a>
           </div>
       </div>
       <main>

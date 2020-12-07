@@ -33,6 +33,7 @@ if($count>0){
     <meta charset="utf-8">
     <title>Attend Login</title>
     <link rel="stylesheet" href="css/login.css">
+    <script src="https://kit.fontawesome.com/718be1b4c6.js" crossorigin="anonymous"></script>
   </head>
 
 
@@ -48,7 +49,7 @@ if($count>0){
           <div class="row justify-content-center">
             <div class="col-xl-5 col-lg-6 col-md-8 px-5">
               <h1 class="text-white">Welcome!</h1>
-              <p class="text-lead text-white">Use these awesome forms to login or create new account in your project for free.</p>
+              <p class="text-lead text-white">The Bhavans presents a whole new platform for teachers to track thier students and attendance.</p>
             </div>
           </div>
         </div>
@@ -65,21 +66,21 @@ if($count>0){
         <div class="col-lg-5 col-md-7">
           <div class="card bg-secondary border-0 mb-0">
             <div class="card-header bg-transparent pb-5">
-              <div class="text-muted text-center mt-2 mb-3"><small>Sign in with</small></div>
+              <div class="text-muted text-center mt-2 mb-3"><small>Visit Me !</small></div>
               <div class="btn-wrapper text-center">
                 <a href="#" class="btn btn-neutral btn-icon">
-                  <span class="btn-inner--icon"><img src="http://localhost/attend/assets/img/icons/common/github.svg"></span>
-                  <span class="btn-inner--text">Github</span>
+                  <span class="btn-inner--icon"><i class="fab fa-linkedin-in"></i></span>
+                  <span class="btn-inner--text">Linkdn</span>
                 </a>
                 <a href="#" class="btn btn-neutral btn-icon">
-                  <span class="btn-inner--icon"><img src="http://localhost/attend/assets/img/icons/common/google.svg"></span>
-                  <span class="btn-inner--text">Google</span>
+                  <span class="btn-inner--icon"><i class="fas fa-globe-asia"></i></span>
+                  <span class="btn-inner--text">Website</span>
                 </a>
               </div>
             </div>
             <div class="card-body px-lg-5 py-lg-5">
               <div class="text-center text-muted mb-4">
-                <small>Or sign in with credentials</small>
+                <small>Login with credentials</small>
               </div>
               <form role="form" method="POST" action="login.php">
                 <div class="form-group mb-3">
@@ -102,10 +103,10 @@ if($count>0){
                 <span class="text-lead" style="color:red;"></span>
 
                 <div class="custom-control custom-control-alternative custom-checkbox">
-                  <input class="custom-control-input" id=" customCheckLogin" type="checkbox">
+                  <!-- <input class="custom-control-input" id=" customCheckLogin" type="checkbox">
                   <label class="custom-control-label" for=" customCheckLogin">
                     <span class="text-muted">Remember me</span>
-                  </label>
+                  </label> -->
                 </div>
                 <div class="text-center">
                   <input type="submit" name="submit" class="btn btn-primary my-4" value="login">
@@ -132,32 +133,28 @@ if($count>0){
       <div class="row align-items-center justify-content-xl-between">
         <div class="col-xl-6">
           <div class="copyright text-center text-xl-left text-muted">
-            � 2020 <a href="https://www.creative-tim.com" class="font-weight-bold ml-1" target="_blank">Creative Tim</a>
+            � 2020 <a href="#" class="font-weight-bold ml-1" target="_blank">Bhavans Applications</a>
           </div>
         </div>
         <div class="col-xl-6">
           <ul class="nav nav-footer justify-content-center justify-content-xl-end">
             <li class="nav-item">
-              <a href="https://www.creative-tim.com" class="nav-link" target="_blank">Creative Tim</a>
+              <a href="#" class="nav-link" target="_blank">Bhavans Applications</a>
             </li>
             <li class="nav-item">
-              <a href="https://www.creative-tim.com/presentation" class="nav-link" target="_blank">About Us</a>
+              <a href="#" class="nav-link" target="_blank">About Us</a>
             </li>
             <li class="nav-item">
-              <a href="http://blog.creative-tim.com" class="nav-link" target="_blank">Blog</a>
+              <a href="#" class="nav-link" target="_blank">Blog</a>
             </li>
             <li class="nav-item">
-              <a href="https://github.com/creativetimofficial/argon-dashboard/blob/master/LICENSE.md" class="nav-link" target="_blank">MIT License</a>
+              <a href="https://github.com/nagamouni/attend/blob/main/LICENSE" class="nav-link" target="_blank">MIT License</a>
             </li>
           </ul>
         </div>
       </div>
     </div>
   </footer>
-  <!-- Argon Scripts -->
-  <!-- Core -->
-
-  <!-- Argon JS -->
 
 </body>
 </html>
