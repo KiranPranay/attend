@@ -16,4 +16,5 @@ require('functions.php');
    
     <title>ATTENDENCE</title>
     <script src="https://kit.fontawesome.com/718be1b4c6.js" crossorigin="anonymous"></script>
+    <script src="js\table2excel.js"></script>
   </head>

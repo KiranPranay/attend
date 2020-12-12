@@ -71,19 +71,19 @@ $class=$_SESSION['CLASS'];
       </div>
       <main>
           <div class="down-btn">
-      <a href="export.php" class="btn btn-primary btn-lg " tabindex="-1" role="button">Download</a>
+      <a   href="export.php"  class="btn btn-primary btn-lg "  tabindex="-1" role="button">Download</a>
 </div>
           
-          <table id="getexel" class="table">
+          <table id="attendtable" class="table">
 
               <tr class="tr1">
                   <th width="10%">
                       Roll No
                   </th>
-                  <th width="20%">
+                  <th width="10%">
                    Name
                 </th>
-                <th width="20%">
+                <th width="10%">
                     P/A
                 </th>
                 <th width="70%">
@@ -101,16 +101,21 @@ $class=$_SESSION['CLASS'];
                       $studdroll=$row['roll'];
                       echo $studdroll ?>
                   </td>
-                  <td style="border-bottom: solid 1px black; width:20%;" width="20%">
+                  <td style="border-bottom: solid 1px black; width:10%;" width="10%">
                   <?php echo $row['name']; ?>
                 </td>
-                <td style="border-bottom: solid 1px black; width:20%;" width="20%">
+                <td style="border-bottom: solid 1px black; width:10%;" width="10%">
                 
                 <?php if($row['status']==1){
-                    echo "PRESENT";
+                    ?>
+                    
+                    <p class="psa" style="color: green"><i class="fas fa-user-graduate"></i></p>
+                    <?php
                 }
                 if($row['status']==0){
-                    echo "ABSENT"; }?>
+                    ?>
+                    <p class="psa" style="color:red"><i class="fas fa-user-graduate"></i></p>
+                     <?php } ?>
                     
                 </td>
                 <td style="border-bottom: solid 1px black; width:70%;" width="70%">
@@ -123,12 +128,12 @@ $class=$_SESSION['CLASS'];
                     
                     $getstat=mysqli_fetch_assoc($dhonga);
                     if($getstat['status']==1){
-                        $historystat="Present";
+                        $color="green";
                     }
                     if($getstat['status']==0){
-                        $historystat="Absent";
+                        $color="red";
                     }
-                    echo $getstat['sub']."=>".$historystat."<br>";   
+                    echo '<p class="p-a"style="color: '.$color.'">'.$getstat['sub']."</p>";   
                 }
                 ?>
                 </td>
@@ -147,6 +152,6 @@ $class=$_SESSION['CLASS'];
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js" integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js" integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV" crossorigin="anonymous"></script>
-
+    
   </body>
 </html>
