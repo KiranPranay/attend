@@ -86,6 +86,26 @@ $class=$_SESSION['CLASS'];
               
               <?php } ?>
           </table>
+        <?php
+//         header("Content-Disposition: attachment; filename=\"test.xls\"");
+//         header("Content-Type: application/vnd.ms-excel");
+//         $out = fopen("php://output", 'w');
+
+//   $flag = false;
+//   $result = pg_query("SELECT * FROM table ORDER BY field") or die('Query failed!');
+//   while(false !== ($row = pg_fetch_assoc($result))) {
+//     if(!$flag) {
+//       // display field/column names as first row
+//       fputcsv($out, array_keys($row), ',', '"');
+//       $flag = true;
+//     }
+//     array_walk($row, __NAMESPACE__ . '\cleanData');
+//     fputcsv($out, array_values($row), ',', '"');
+//   }
+
+//   fclose($out);
+//   exit;
+        ?>
           <script>
     // document.getElementById('downloadexel').addEventListener('click', function(){
         var table2excel = new Table2Excel();

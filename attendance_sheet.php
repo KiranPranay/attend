@@ -82,6 +82,7 @@ if(isset($_POST['class'])){
                 </th>
               </tr>
               <?php
+              
               $res=mysqli_query($con,"SELECT * from `students` where `status`='1' and `class`='$class'");
               while($row=mysqli_fetch_assoc($res)){
               ?>

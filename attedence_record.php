@@ -71,7 +71,7 @@ $class=$_SESSION['CLASS'];
       </div>
       <main>
           <div class="down-btn">
-      <a   href="export.php"  class="btn btn-primary btn-lg "  tabindex="-1" role="button">Download</a>
+      <a   href="export.php" target="_BLANK"  class="btn btn-primary btn-lg "  tabindex="-1" role="button">Download</a>
 </div>
           
           <table id="attendtable" class="table">
