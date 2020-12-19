@@ -55,6 +55,12 @@
   margin-left: 5%;
   margin-right: 5%;
   width: 90%;
+  border-top: none !important;
+  color: #ffffff;
+}
+.table td,
+th {
+  border-top: none !important;
 }
 .tr1 {
   background-color: #130f40;
@@ -67,6 +73,21 @@
 .btn-cont {
   text-align: center;
   padding-bottom: 20px;
+}
+.btn-submit {
+  background: rgba(255, 255, 255, 0.25);
+  box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
+  backdrop-filter: blur(4px);
+  -webkit-backdrop-filter: blur(4px);
+  border-radius: 10px;
+  border-color: transparent !important;
+}
+.btn-submit:hover {
+  background: rgba(255, 255, 255, 0.1);
+  box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
+  backdrop-filter: blur(4px);
+  -webkit-backdrop-filter: blur(4px);
+  border-radius: 10px;
 }
 .body-sty {
   margin: 2%;
@@ -85,7 +106,7 @@
   margin-bottom: 4px;
 }
 .logout {
-  color: #130f40;
+  color: #ffffff;
   text-transform: uppercase;
   font-weight: 600;
   position: relative;
@@ -101,8 +122,13 @@
   will-change: transform;
 }
 .logout:hover {
-  color: #130f40;
+  color: #ffffff;
   text-decoration: none;
+  box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
+  backdrop-filter: blur(4px);
+  -webkit-backdrop-filter: blur(4px);
+  border-radius: 10px;
+  padding: 2px 6px;
 }
 
 .logoutbt {
@@ -128,4 +154,28 @@
   font-weight: 600 !important;
   font-family: "Lato", sans-serif;
   text-transform: capitalize;
+}
+.body-sty {
+  background: url(https://cdn.pixabay.com/photo/2017/09/07/17/27/background-2726039_1280.png);
+  object-fit: fill;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  background-size: cover;
+  /* background: rgba(255, 255, 255, 0.25); */
+  box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
+  backdrop-filter: blur(4px);
+  -webkit-backdrop-filter: blur(4px);
+  border-radius: 10px;
+  color: #ffffff;
+}
+.exportbox {
+  margin-left: 5%;
+  margin-right: 5%;
+  padding: 10px;
+  background: rgba(255, 255, 255, 0.05);
+  box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
+  backdrop-filter: blur(4px);
+  -webkit-backdrop-filter: blur(4px);
+  border-radius: 10px;
+  margin-top: 20px;
 }

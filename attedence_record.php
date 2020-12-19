@@ -18,7 +18,7 @@ $class=$_SESSION['CLASS'];
 }
 
 ?>
-  <body>
+  <body class="body-sty" >
       <header class="header">
           <div>
         <h2 class="h-h1">
