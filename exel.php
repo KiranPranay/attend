@@ -1,6 +1,7 @@
 <?php
 session_start();
 require('top.inc.php');
+
 foreach($_POST as $key => $value){
     $roll=$key;
     $status=$value;
@@ -14,10 +15,10 @@ foreach($_POST as $key => $value){
     mysqli_query($con,"INSERT into `attendance-record` (`roll`,`status`,`time`,`subject`) VALUES ('$roll','$status','$date','$sub')");
     }
 }
-$from = '';
-$to = '3020-12-31';
-if(isset($_GET['from'])){
-    $from = $_GET['from'];
+$month = '';
+
+if(isset($_GET['month'])){
+    $month = $_GET['month'];
     // $to = $_GET['to'];
 }
     $class=$_SESSION['CLASS'];
@@ -78,16 +79,32 @@ if(isset($_GET['from'])){
           </div>
           
       </div>
-      <div class="exportbox">
-      <h3>Export Attendence Sheet</h3>
-      <form method="get">
-          <label>From : </label>
-          <input type="date" name="from">
-          <label>To : </label>
-          <input type="date" name="to">
-          <input type="submit">
-
-</form>
+      
+ 
+<form method="get" >
+    <div class="dropdown">
+      <label class="dropbtn">Select Month</label>
+      <select class="dropdown-content" name="month">
+        <option value="1">January </aoption>
+        <option value="#">Febuary</option>
+        <option value="#">March </option>
+        <option value="#">April </option>
+        <option value="#">May </option>
+        <option value="#">June </option>
+        <option value="#">July </option>
+        <option value="#">August </option>
+        <option value="#">September </option>
+        <option value="#">October </option>
+        <option value="#">November </option>
+        <option value="#">December </option>
+      </select>
+    </div>
+    <input type="submit">
+    </form>
+<div style="float:right;  margin-right: 73px;
+  margin-top: 10px;">
+<button onclick="window.location.href='export.php'" class="dropbtn">Download today</button>
+</div>
     
 </div>
       <main>
@@ -110,13 +127,13 @@ if(isset($_GET['from'])){
                 </th>
               </tr>
               <?php
-              if(isset($_GET['from'])){
               
-              $res = mysqli_query($con,"SELECT * from `students`,`attendance-record` where `students`.`status`='1' and `students`.`class`='$class' and `attendance-record`.`subject`='$sub' and `students`.`roll`=`attendance-record`.`roll` and (`attendance-record`.`time` > '$from' and `attendance-record`.`time` < '$to') ");
-              } // } else {
+              
+              $res = mysqli_query($con,"SELECT * from `students`,`attendance-record` where `students`.`status`='1' and `students`.`class`='$class' and `attendance-record`.`subject`='$sub' and `students`.`roll`=`attendance-record`.`roll` and MONTH(`attendance-record`.`time`)='$month'");
+              // } else {
                 //     $res=mysqli_query($con,"SELECT * from `students`,`attendance-record` where `students`.`status`='1' and `students`.`class`='$class' and `attendance-record`.`subject`='$sub' and `students`.`roll`=`attendance-record`.`roll`");
                 // }
-               echo "SELECT * from `students`,`attendance-record` where `students`.`status`='1' and `students`.`class`='$class' and `attendance-record`.`subject`='$sub' and `students`.`roll`=`attendance-record`.`roll` and (`attendance-record`.`time` > '$from' and `attendance-record`.`time` < '$to') ";
+              // echo "SELECT * from `students`,`attendance-record` where `students`.`status`='1' and `students`.`class`='$class' and `attendance-record`.`subject`='$sub' and `students`.`roll`=`attendance-record`.`roll` and MONTH(`attendance-record`.`time`)='$month'";
               while($row=mysqli_fetch_assoc($res)){
               ?>
               <tr>
@@ -141,15 +158,39 @@ if(isset($_GET['from'])){
 
 
 
-    <!-- Optional JavaScript -->
-    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
-    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
-    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js" integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js" integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV" crossorigin="anonymous"></script>
-    <script >
-        $('input[type="checkbox"]').on('change', function() {
-    $('input[name="' + this.name + '"]').not(this).prop('checked', false);
-    });
+    <?php
+//         header("Content-Disposition: attachment; filename=\"test.xls\"");
+//         header("Content-Type: application/vnd.ms-excel");
+//        $out = fopen("php://output", 'w');
+
+//   $flag = false;
+//   $result = pg_query("SELECT * FROM table ORDER BY field") or die('Query failed!');
+//   while(false !== ($row = pg_fetch_assoc($result))) {
+//      if(!$flag) { 
+     // display field/column names as first row
+//       fputcsv($out, array_keys($row), ',', '"');
+//       $flag = true;
+//     }
+//     array_walk($row, __NAMESPACE__ . '\cleanData');
+//     fputcsv($out, array_values($row), ',', '"');
+//  }
+
+//   fclose($out);
+//   exit;
+//        ?>
+          <script>
+//     document.getElementById('downloadexel').addEventListener('click', function(){
+//         var table2excel = new Table2Excel();
+//         table2excel.export(document.querySelectorAll("#attendtable"));
+//     });
+   
+//         $('input[type="checkbox"]').on('change', function() {
+//     $('input[name="' + this.name + '"]').not(this).prop('checked', false);
+//     });
         </script>
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+     <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js" integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous"></script>
+   <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js" integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV" crossorigin="anonymous"></script>
+ 
   </body>
 </html>
