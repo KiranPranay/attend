@@ -24,137 +24,153 @@ if(isset($_GET['month'])){
     $class=$_SESSION['CLASS'];
     $sub=$_SESSION['SUBJECT'];
 ?>
-  <body class="body-sty" >
-      <header class="header">
-          <div>
-        <h2 class="h-h1">
-            ATTENDENCE
-        </h2>
-    </div>
+
+<body class="body-sty">
+    <header class="header">
+        <div>
+            <h2 class="h-h1">
+                ATTENDENCE
+            </h2>
+        </div>
         <div class="h-img">
-        <img  src="assests/pics/logo.png" height="50px" >
-    </div>
-      </header>
-      <br>
-      <div class="mainbox" >
-          <div class="sbox1">
-              <ul>
-                  <li>
-                  <i class="fas fa-university clg"></i>
-                  </li>
-            <li>
-                <h3>
-                    DETAILS
-                </h3>
-            </li>
-                </ul>
-          </div>
-          <div class="sbox2">
-              <ul>
-                  <li>
-                     <b> Date: </b> <?php echo date("Y-m-d"); ?>
-                  </li>
-                  
-                  <li>
-                  <b>Subject :</b>
-                     <?php 
+            <img src="assests/pics/logo.png" height="50px">
+        </div>
+    </header>
+    <br>
+    <div class="mainbox">
+        <div class="sbox1">
+            <ul>
+                <li>
+                    <i class="fas fa-university clg"></i>
+                </li>
+                <li>
+                    <h3>
+                        DETAILS
+                    </h3>
+                </li>
+            </ul>
+        </div>
+        <div class="sbox2">
+            <ul>
+                <li>
+                    <b> Date: </b> <?php echo date("Y-m-d"); ?>
+                </li>
+
+                <li>
+                    <b>Subject :</b>
+                    <?php 
                      $subname=mysqli_fetch_assoc(mysqli_query($con,"SELECT `subjects`.`sub` FROM `subjects` where `subjects`.`id`='$subject'"));
                      echo $subname['sub'];
                      ?>
-                  </li>
-                  <li>
+                </li>
+                <li>
                     <b> Teacher : </b> <?php echo $_SESSION['TEACHER_USERNAME'] ?>
                 </li>
                 <li>
-                <b>class :</b>
-                     <?php 
+                    <b>class :</b>
+                    <?php 
                      $classname=mysqli_fetch_assoc(mysqli_query($con,"SELECT `classes`.`class` FROM `classes` where `classes`.`id`='$class'"));
                      echo $classname['class'];
                      ?>
                 </li>
-              </ul>
-              <span class="logoutbt">
-              <a href="logout.php" class="logout" ><i class="fas fa-sign-out-alt"></i> Logout Here</a>
-</span>
-          </div>
-          
-      </div>
-      
- 
-<form method="get" >
-    <div class="dropdown">
-      <label class="dropbtn">Select Month</label>
-      <select class="dropdown-content" name="month">
-        <option value="1">January </aoption>
-        <option value="#">Febuary</option>
-        <option value="#">March </option>
-        <option value="#">April </option>
-        <option value="#">May </option>
-        <option value="#">June </option>
-        <option value="#">July </option>
-        <option value="#">August </option>
-        <option value="#">September </option>
-        <option value="#">October </option>
-        <option value="#">November </option>
-        <option value="#">December </option>
-      </select>
+            </ul>
+            <span class="logoutbt">
+                <a href="logout.php" class="logout"><i class="fas fa-sign-out-alt"></i> Logout Here</a>
+            </span>
+        </div>
+
     </div>
-    <input type="submit">
-    </form>
-<div style="float:right;  margin-right: 73px;
+
+    <div class="fromto">
+        <form method="get">
+            <lebel>From</label>
+                <input name="from" Type="date">
+                <lebel>To</label>
+                    <input name="to" Type="date">
+                    <button type="submit" class="dropbtn" style="padding: 9px; margin-left: 9px;">Get Data</button>
+        </form>
+    </div>
+    <?php
+    if(isset($_GET['from'])){
+        $from=$_GET['from'];
+        $to=$_GET['to'];
+    }
+    ?>
+    <div style="float:right;  margin-right: 73px;
   margin-top: 10px;">
-<button onclick="window.location.href='export.php'" class="dropbtn">Download today</button>
-</div>
-    
-</div>
-      <main>
-          <form method="post" action="attedence_record.php">
-          <table class="table">
-          <?php
+        <button onclick="window.location.href='export.php'" class="dropbtn">Download today</button>
+    </div>
+
+    </div>
+    <main>
+
+        <table class="table" id="cumsheet">
+            <?php
                 // $res="SELECT * from `students` where `students`.`class`='$class'";
                 // $row=mysqli_fetch_assoc(mysqli_query($con,$res));
                 // while($row){
                 ?>
-              <tr class="tr1">
-                  <th>
-                      Roll No
-                  </th>
-                  <th>
-                   Name
+            <tr class="tr1">
+                <th>
+                    Date
+                </th>
+                <th>
+                    Roll No
+                </th>
+                <th>
+                    Name
                 </th>
                 <th>
                     P/A
                 </th>
-              </tr>
-              <?php
+
+            </tr>
+            <?php
               
-              
-              $res = mysqli_query($con,"SELECT * from `students`,`attendance-record` where `students`.`status`='1' and `students`.`class`='$class' and `attendance-record`.`subject`='$sub' and `students`.`roll`=`attendance-record`.`roll` and MONTH(`attendance-record`.`time`)='$month'");
-              // } else {
-                //     $res=mysqli_query($con,"SELECT * from `students`,`attendance-record` where `students`.`status`='1' and `students`.`class`='$class' and `attendance-record`.`subject`='$sub' and `students`.`roll`=`attendance-record`.`roll`");
-                // }
-              // echo "SELECT * from `students`,`attendance-record` where `students`.`status`='1' and `students`.`class`='$class' and `attendance-record`.`subject`='$sub' and `students`.`roll`=`attendance-record`.`roll` and MONTH(`attendance-record`.`time`)='$month'";
+              if(isset($_GET['from']) && $_GET['from']!=''){
+              $res = mysqli_query($con,"SELECT * from `students`,`attendance-record` where `students`.`status`='1' and `students`.`class`='$class' and `attendance-record`.`subject`='$sub' and `students`.`roll`=`attendance-record`.`roll` and `attendance-record`.`time` BETWEEN '$from' and '$to' ORDER BY `attendance-record`.`time` ASC ");
               while($row=mysqli_fetch_assoc($res)){
               ?>
-              <tr>
-                  <td>
-                      <?php echo $row['roll']; ?>
-                  </td>
-                  <td>
-                  <?php echo $row['name']; ?>
+            <tr>
+                <td style="border-bottom: solid 1px black; width:10%;" width="70%">
+                    <?php
+                      $date=$row['time'];
+                      echo $date ?>
                 </td>
-                <td>
-                    <input type="checkbox"  name="<?php echo $row['roll']; ?>" value="1">
-                    <input type="checkbox"  name="<?php echo $row['roll']; ?>" value="0">
+                <td style="border-bottom: solid 1px black; width:10%;" width="10%">
+                    <?php
+                      $studdroll=$row['roll'];
+                      echo $studdroll ?>
                 </td>
-              </tr>
-              <?php } ?>
-          </table>
-          <div class="btn-cont">
-          <button type="submit" name="submit" class="btn btn-success btn-submit">Submit</button>
-              </div>
-        </form>
-      </main>
+                <td style="border-bottom: solid 1px black; width:10%;" width="10%">
+                    <?php echo $row['name']; ?>
+                </td>
+                <td style="border-bottom: solid 1px black; width:10%;" width="10%">
+
+                    <?php if($row['status']==1){
+                    ?>
+
+                    <p class="psa" style="color: green">Present</p>
+                    <?php
+                }
+                if($row['status']==0){
+                    ?>
+                    <p class="psa" style="color:red">Absent</p>
+                    <?php } ?>
+
+                </td>
+
+            </tr>
+            <?php } 
+                }?>
+
+
+        </table>
+        <div class="btn-cont">
+            <button id="cumexel" class="btn btn-success btn-submit">Download</button>
+        </div>
+
+    </main>
 
 
 
@@ -178,19 +194,22 @@ if(isset($_GET['month'])){
 //   fclose($out);
 //   exit;
 //        ?>
-          <script>
-//     document.getElementById('downloadexel').addEventListener('click', function(){
-//         var table2excel = new Table2Excel();
-//         table2excel.export(document.querySelectorAll("#attendtable"));
-//     });
-   
-//         $('input[type="checkbox"]').on('change', function() {
-//     $('input[name="' + this.name + '"]').not(this).prop('checked', false);
-//     });
-        </script>
-    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
-     <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js" integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous"></script>
-   <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js" integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV" crossorigin="anonymous"></script>
- 
-  </body>
+    <script>
+    document.getElementById('cumexel').addEventListener('click', function() {
+        var table2excel = new Table2Excel();
+        table2excel.export(document.querySelectorAll("#cumsheet"));
+    });
+    </script>
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
+        integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous">
+    </script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"
+        integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous">
+    </script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"
+        integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV" crossorigin="anonymous">
+    </script>
+
+</body>
+
 </html>
