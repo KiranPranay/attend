@@ -20,50 +20,52 @@ $sub=$_SESSION['SUBJECT'];
 $clsname=$_SESSION['CLASS'];
 $class=$_SESSION['CLASS'];
 ?>
-<table id="attendtable" class="table">
 
-              <tr class="tr1">
-                  <th width="10%">
-                      Roll No
-                  </th>
-                  <th width="10%">
-                   Name
-                </th>
-                <th width="10%">
-                    P/A
-                </th>
-                <th width="70%">
-                    History
-                </th>
-              </tr>
-              <?php
+<body class="body-sty">
+    <table id="attendtable" class="table">
+
+        <tr class="tr1">
+            <th width="10%">
+                Roll No
+            </th>
+            <th width="10%">
+                Name
+            </th>
+            <th width="10%">
+                P/A
+            </th>
+            <th width="70%">
+                History
+            </th>
+        </tr>
+        <?php
               $res=mysqli_query($con,"SELECT `attendance-record`.`status`,`students`.`class`,`attendance-record`.`subject`,`attendance-record`.`time`,`students`.`name`,`attendance-record`.`roll`,`students`.`roll`  from `attendance-record`, `students` where `class`='$class' and `subject`='$sub' and `time`='$date' and `attendance-record`.`roll`=`students`.`roll`");
               while($row=mysqli_fetch_assoc($res)){
               ?>
-              <tr >
-                  <td style="border-bottom: solid 1px black; width:10%;" width="10%">
-                      <?php
+        <tr>
+            <td style="border-bottom: solid 1px black; width:10%;" width="10%">
+                <?php
                       $studdroll=$row['roll'];
                       echo $studdroll ?>
-                  </td>
-                  <td style="border-bottom: solid 1px black; width:10%;" width="10%">
-                  <?php echo $row['name']; ?>
-                </td>
-                <td style="border-bottom: solid 1px black; width:10%;" width="10%">
-                
+            </td>
+            <td style="border-bottom: solid 1px black; width:10%;" width="10%">
+                <?php echo $row['name']; ?>
+            </td>
+            <td style="border-bottom: solid 1px black; width:10%;" width="10%">
+
                 <?php if($row['status']==1){
                     ?>
-                    
-                    <p class="psa" style="color: green">Present</p>
-                    <?php
+
+                <p class="psa" style="color: green">Present</p>
+                <?php
                 }
                 if($row['status']==0){
                     ?>
-                    <p class="psa" style="color:red">Absent</i></p>
-                     <?php } ?>
-                    
-                </td>
-                <td style="border-bottom: solid 1px black; width:70%;" width="70%">
+                <p class="psa" style="color:red">Absent</i></p>
+                <?php } ?>
+
+            </td>
+            <td style="border-bottom: solid 1px black; width:70%;" width="70%">
                 <?php
                 
                 $getsub=mysqli_query($con,"SELECT `subjects`.`id` FROM `subjects`,`attendance-record` where `class`='$class' and `subjects`.`id`=`attendance-record`.`subject` and `attendance-record`.`time`='$date' and `attendance-record`.`roll`='$studdroll'");
@@ -81,12 +83,13 @@ $class=$_SESSION['CLASS'];
                     echo '<p class="p-a"style="color: '.$color.'">'.$getstat['sub']."</p>";   
                 }
                 ?>
-                </td>
-              </tr>
-              
-              <?php } ?>
-          </table>
-        <?php
+            </td>
+        </tr>
+
+        <?php } ?>
+    </table>
+</body>
+<?php
 //         header("Content-Disposition: attachment; filename=\"test.xls\"");
 //         header("Content-Type: application/vnd.ms-excel");
 //         $out = fopen("php://output", 'w');
@@ -106,11 +109,12 @@ $class=$_SESSION['CLASS'];
 //   fclose($out);
 //   exit;
         ?>
-          <script>
-    // document.getElementById('downloadexel').addEventListener('click', function(){
-        var table2excel = new Table2Excel();
-        table2excel.export(document.querySelectorAll("#attendtable"));
-    // });
-    </script>
-          </body>
-          </html>
+<script>
+// document.getElementById('downloadexel').addEventListener('click', function(){
+var table2excel = new Table2Excel();
+table2excel.export(document.querySelectorAll("#attendtable"));
+// });
+</script>
+</body>
+
+</html>
