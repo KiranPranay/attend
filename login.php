@@ -68,11 +68,11 @@ if($count>0){
             <div class="card-header bg-transparent pb-5">
               <div class="text-muted text-center mt-2 mb-3"><small>Visit Me !</small></div>
               <div class="btn-wrapper text-center">
-                <a href="#" class="btn btn-neutral btn-icon">
+                <a href="https://www.google.com/url?sa=t&source=web&rct=j&url=https://in.linkedin.com/school/bharathiya-vidya-bhavans-vivekananda-college-of-science-humanities-%26-commerce/&ved=2ahUKEwjvyPHkzf_tAhWewjgGHelNC1IQFjAJegQIHhAB&usg=AOvVaw0P9AgVn7fsNwZkV6l7TArR" class="btn btn-neutral btn-icon">
                   <span class="btn-inner--icon"><i class="fab fa-linkedin-in"></i></span>
                   <span class="btn-inner--text">Linkdn</span>
                 </a>
-                <a href="#" class="btn btn-neutral btn-icon">
+                <a href="https://www.google.com/url?sa=t&source=web&rct=j&url=https://bhavansvc.ac.in/&ved=2ahUKEwi67dnovP_tAhX14jgGHSoTA8YQFjAPegQIDRAB&usg=AOvVaw2GMaibeNOrFI6kAOTSbMXy" class="btn btn-neutral btn-icon">
                   <span class="btn-inner--icon"><i class="fas fa-globe-asia"></i></span>
                   <span class="btn-inner--text">Website</span>
                 </a>
