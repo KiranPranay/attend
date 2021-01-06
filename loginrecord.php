@@ -16,7 +16,7 @@ if($count>0){
     $_SESSION['TEACHER_USERNAME']=$name;
     $_SESSION['TEACHER_ID']=$id;
     $error="welcome".$name;
-  echo  "<script>window.location.href='index.php'</script>";
+  echo  "<script>window.location.href='recordindex.php'</script>";
 }else{
     $error="Invalid Details";
     // echo  "<script>window.location.href='login.php'</script>";

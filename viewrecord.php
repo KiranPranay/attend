@@ -1,12 +1,7 @@
 <?php
 session_start();
 require('top.inc.php');
-if(isset($_POST['class'])){
-    $class=$_POST['class'];
-    $subject=$_POST['subject'];
-    $_SESSION['SUBJECT']=$subject;
-    $_SESSION['CLASS']=$class;
-}
+
 
 foreach($_POST as $key => $value){
     $roll=$key;
@@ -95,6 +90,13 @@ if(isset($_GET['month'])){
                     <input name="to" Type="date">
                     <button type="submit" class="dropbtn" style="padding: 9px; margin-left: 9px;">Get Data</button>
         </form>
+        <br>
+        or
+        <br>
+        <form method="get">
+            <input placeholder="Enter Roll No." name="roll">
+            <button type="submit" class="dropbtn" style="padding: 9px; margin-left: 9px;">Get Data</button>
+        </form>
     </div>
     <?php
     if(isset($_GET['from'])){
@@ -102,10 +104,7 @@ if(isset($_GET['month'])){
         $to=$_GET['to'];
     }
     ?>
-    <div style="float:right;  margin-right: 73px;
-  margin-top: 10px;">
-        <button onclick="window.location.href='export.php'" class="dropbtn">Download today</button>
-    </div>
+
 
     </div>
     <main>
@@ -137,6 +136,48 @@ if(isset($_GET['month'])){
               $res = mysqli_query($con,"SELECT * from `students`,`attendance-record` where `students`.`status`='1' and `students`.`class`='$class' and `attendance-record`.`subject`='$sub' and `students`.`roll`=`attendance-record`.`roll` and `attendance-record`.`time` BETWEEN '$from' and '$to' ORDER BY `attendance-record`.`time` ASC ");
               while($row=mysqli_fetch_assoc($res)){
               ?>
+
+            <tr>
+                <td style="border-bottom: solid 1px black; width:10%;" width="70%">
+                    <?php
+                      $date=$row['time'];
+                      echo $date ?>
+                </td>
+                <td style="border-bottom: solid 1px black; width:10%;" width="10%">
+                    <?php
+                      $studdroll=$row['roll'];
+                      echo $studdroll ?>
+                </td>
+                <td style="border-bottom: solid 1px black; width:10%;" width="10%">
+                    <?php echo $row['name']; ?>
+                </td>
+                <td style="border-bottom: solid 1px black; width:10%;" width="10%">
+
+                    <?php if($row['status']==1){
+                    ?>
+
+                    <p class="psa" style="color: green">Present</p>
+                    <?php
+                }
+                if($row['status']==0){
+                    ?>
+                    <p class="psa" style="color:red">Absent</p>
+                    <?php } ?>
+
+                </td>
+
+            </tr>
+            <?php } 
+                }?>
+
+            <?php
+              
+              if(isset($_GET['roll']) && $_GET['roll']!=''){
+                  $roll=$_GET['roll'];
+              $res = mysqli_query($con,"SELECT `attendance-record`.`time`,`attendance-record`.`roll`,`attendance-record`.`status`,`students`.`name`,`students`.`roll` from `students`,`attendance-record` where   `attendance-record`.`subject`='$sub' and `attendance-record`.`roll`='$roll' and `attendance-record`.`roll`=`students`.`roll`");
+              while($row=mysqli_fetch_assoc($res)){
+              ?>
+
             <tr>
                 <td style="border-bottom: solid 1px black; width:10%;" width="70%">
                     <?php

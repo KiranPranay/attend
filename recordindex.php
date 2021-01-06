@@ -1,40 +1,24 @@
 <?php
+session_start();
 require('connection.php');
 require('functions.php');
-$error='';
-if(isset($_POST["submit"])){
-$name=safe_chesey($con,$_POST['name']);
-$password=safe_chesey($con,$_POST['password']);
-$res="SELECT * from `teachers` where `teachers`.`name`='$name' and `teachers`.`password`='$password'";
-$result = $con->query($res);
-$row=mysqli_fetch_assoc(mysqli_query($con,$res));
-$count=mysqli_num_rows($result);
-if($count>0){
-  $status="yes";
-  $id=$row['id'];
-    $_SESSION['TEACHER_LOGIN']=$status;
-    $_SESSION['TEACHER_USERNAME']=$name;
-    $_SESSION['TEACHER_ID']=$id;
-    $error="welcome".$name;
-  echo  "<script>window.location.href='index.php'</script>";
-}else{
-    $error="Invalid Details";
-    // echo  "<script>window.location.href='login.php'</script>";
-    
-}
-}
+if(isset($_SESSION['TEACHER_LOGIN']) && $_SESSION['TEACHER_LOGIN']!=''){
 
+}else {
+  echo "<script>window.location.href='loginrecord.php'</script>";
+}
 ?>
 <!DOCTYPE html>
 <!-- Created By CodingNepal -->
 <html lang="en" dir="ltr">
 
 <head>
-    <meta width="device-width, initial-scale= -1">
     <meta charset="utf-8">
     <title>Attend Login</title>
     <link rel="stylesheet" href="css/login.css">
     <script src="https://kit.fontawesome.com/718be1b4c6.js" crossorigin="anonymous"></script>
+
+    <!-- <script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-lGuUqJUPXJEMgQX/RRaM6mZkK6ono5i5bHuBME4qOCo=" crossorigin="anonymous"></script> -->
 </head>
 
 
@@ -64,36 +48,47 @@ if($count>0){
             </div>
         </div>
         <!-- Page content -->
+        <?php 
+              $id=$_SESSION['TEACHER_ID'];
+$res="SELECT * from `teachers` where `teachers`.`id`='$id'";
+$row=mysqli_fetch_assoc(mysqli_query($con,$res));
+?>
         <div class="container mt--8 pb-5">
             <div class="row justify-content-center">
-                <div class="col-lg-5 ">
+                <div class="col-lg-5 col-md-7">
                     <div class="card bg-secondary border-0 mb-0">
                         <div class="card-header bg-transparent pb-5">
-                            <div class="text-muted text-center mt-2 mb-3"><small>Visit Me !</small></div>
-                            <div class="btn-wrapper text-center">
-                                <a href="https://www.google.com/url?sa=t&source=web&rct=j&url=https://in.linkedin.com/school/bharathiya-vidya-bhavans-vivekananda-college-of-science-humanities-%26-commerce/&ved=2ahUKEwjvyPHkzf_tAhWewjgGHelNC1IQFjAJegQIHhAB&usg=AOvVaw0P9AgVn7fsNwZkV6l7TArR"
-                                    class="btn btn-neutral btn-icon">
-                                    <span class="btn-inner--icon"><i class="fab fa-linkedin-in"></i></span>
-                                    <span class="btn-inner--text">Linkdn</span>
-                                </a>
-                                <a href="https://www.google.com/url?sa=t&source=web&rct=j&url=https://bhavansvc.ac.in/&ved=2ahUKEwi67dnovP_tAhX14jgGHSoTA8YQFjAPegQIDRAB&usg=AOvVaw2GMaibeNOrFI6kAOTSbMXy"
-                                    class="btn btn-neutral btn-icon">
-                                    <span class="btn-inner--icon"><i class="fas fa-globe-asia"></i></span>
-                                    <span class="btn-inner--text">Website</span>
-                                </a>
-                            </div>
+
+                            <p>
+                                <bold>Name : </bold><?php echo $row['name'] ?>
+                            </p>
+                            <p>email : <?php echo $row['email'] ?></p>
+                            <p>mobile : <?php echo $row['mobile'] ?></p>
+                            <a href="logout.php" class="btn btn-success btn-submit"><i class="fas fa-sign-out-alt"></i>
+                                logout here</a>
                         </div>
                         <div class="card-body px-lg-5 py-lg-5">
                             <div class="text-center text-muted mb-4">
-                                <small>Login with credentials</small>
+                                <small>Select Your Class</small>
                             </div>
-                            <form role="form" method="POST" action="login.php">
+                            <form role="form" method="POST" action="exel.php">
+
                                 <div class="form-group mb-3">
                                     <div class="input-group input-group-merge input-group-alternative">
                                         <div class="input-group-prepend">
                                             <span class="input-group-text"><i class="ni ni-email-83"></i></span>
                                         </div>
-                                        <input class="form-control" name="name" placeholder="username" type="text">
+                                        <!-- <input class="form-control" name="name" placeholder="username" type="text"> -->
+                                        <select id="class" class="classl" onchange="get_sub()" name="class">
+                                            <option value="">Select</option>
+                                            <?php 
+                    $res=mysqli_query($con,"SELECT * from `classes`");
+                    while($row=mysqli_fetch_assoc($res)){
+                                        ?>
+                                            <option value="<?php echo $row['id'] ?>"><?php echo $row['class'] ?>
+                                            </option>
+                                            <?php } ?>
+                                        </select>
                                     </div>
                                 </div>
                                 <div class="form-group">
@@ -101,18 +96,20 @@ if($count>0){
                                         <div class="input-group-prepend">
                                             <span class="input-group-text"><i class="ni ni-lock-circle-open"></i></span>
                                         </div>
-                                        <input class="form-control" name="password" placeholder="Password"
-                                            type="password">
+                                        <!-- <input class="form-control" name="password" placeholder="Password" type="password"> -->
+                                        <select id="sub_id" class="classl" name="subject">
+                                            <option value="">Select</option>
+                                        </select>
                                     </div>
                                 </div>
 
                                 <span class="text-lead" style="color:red;"></span>
 
                                 <div class="custom-control custom-control-alternative custom-checkbox">
-                                    <!-- <input class="custom-control-input" id=" customCheckLogin" type="checkbox">
-                  <label class="custom-control-label" for=" customCheckLogin">
-                    <span class="text-muted">Remember me</span>
-                  </label> -->
+                                    <input class="custom-control-input" id=" customCheckLogin" type="checkbox">
+                                    <label class="custom-control-label" for=" customCheckLogin">
+                                        <span class="text-muted">Remember me</span>
+                                    </label>
                                 </div>
                                 <div class="text-center">
                                     <input type="submit" name="submit" class="btn btn-primary my-4" value="login">
@@ -162,6 +159,23 @@ if($count>0){
             </div>
         </div>
     </footer>
+
+    <script src="assests\js\jQuery.js"></script>
+    <script>
+    function get_sub() {
+        var class_id = jQuery('#class').val();
+        jQuery.ajax({
+            url: 'get_sub.php',
+            type: 'post',
+            data: 'class=' + class_id,
+            success: function(result) {
+                jQuery('#sub_id').html(result);
+                // console.log(result);
+            }
+        });
+        // alert(class_id);
+    }
+    </script>
 
 </body>
 
